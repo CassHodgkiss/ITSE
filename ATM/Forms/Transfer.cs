@@ -22,10 +22,12 @@ namespace ATM
 
         public Transfer(MainOptions mainOptions, ATM atm)
         {
+            InitializeComponent();
+
             this.mainOptions = mainOptions;
             this.atm = atm;
 
-            InitializeComponent();
+            LanguageSwitcher.OnLangSwitch += SwitchLanguage;
         }
 
         private void GoBack_B_Click(object sender, EventArgs e)
@@ -36,36 +38,40 @@ namespace ATM
 
         private void Select_Account_B_Click(object sender, EventArgs e)
         {
-            InputBox inputBox = new InputBox("Account", "Input Account Id");
+            InputBox inputBox = new InputBox(LanguageSwitcher.GetString("Transfer_Account_Title"), 
+                LanguageSwitcher.GetString("Transfer_Account_Prompt"));
+
             inputBox.ShowDialog();
             int id = int.Parse(inputBox.Input_TB.Text);
             transferTo = atm.GetAccountById(id);
             if(transferTo == null)
             {
-                MessageBox.Show("Account could not be Found");
+                MessageBox.Show(LanguageSwitcher.GetString("Transfer_AccountNotFound"));
                 return;
             }
             if (transferTo.Id == atm.GetAccount().Id)
             {
-                MessageBox.Show("Cannot transfer to Own Account");
+                MessageBox.Show(LanguageSwitcher.GetString("Transfer_AccountSame"));
                 transferTo = null;
                 return;
             }
-            MessageBox.Show($"Valid Account Found of Id {transferTo.Id}");
+            MessageBox.Show($"{LanguageSwitcher.GetString("Transfer_AccountFound")} {transferTo.Id}");
             UpdateTransferL();
         }
 
         private void Select_Amount_B_Click(object sender, EventArgs e)
         {
-            InputBox inputBox = new InputBox("Amount", "Input Amount");
+            InputBox inputBox = new InputBox(LanguageSwitcher.GetString("Transfer_Amount_Title"), 
+                LanguageSwitcher.GetString("Transfer_Amount_Prompt"));
+
             inputBox.ShowDialog();
             amount = double.Parse(inputBox.Input_TB.Text);
             if(amount == 0)
             {
-                MessageBox.Show($"Please Insert Amount more than 0");
+                MessageBox.Show(LanguageSwitcher.GetString("Transfer_AmountZero"));
                 return;
             }
-            MessageBox.Show($"Set amount to £{amount}");
+            MessageBox.Show($"{LanguageSwitcher.GetString("Transfer_AmountSet")} £{amount}");
             UpdateTransferL();
         }
 
@@ -88,7 +94,9 @@ namespace ATM
         void UpdateTransferL()
         {
             if (transferTo == null | amount == 0) return;
-            Transfer_L.Text = $"Transfer £{amount} to Account {transferTo.Id}";
+            Transfer_L.Text = 
+                $"{LanguageSwitcher.GetString("Transfer_Transfer_0")} £{amount} " +
+                $"{LanguageSwitcher.GetString("Transfer_Transfer_1")} {transferTo.Id}";
         }
 
         void Reset()
@@ -96,6 +104,15 @@ namespace ATM
             transferTo = null;
             amount = 0;
             Transfer_L.Text = "";
+        }
+
+        void SwitchLanguage()
+        {
+            Prompt_L.Text =         LanguageSwitcher.GetString("Transfer_Prompt");
+            Select_Account_B.Text = LanguageSwitcher.GetString("Transfer_SelectAccount");
+            Select_Amount_B.Text =  LanguageSwitcher.GetString("Transfer_SelectAmount");
+            Transfer_B.Text =       LanguageSwitcher.GetString("Transfer_Transfer");
+            GoBack_B.Text =         LanguageSwitcher.GetString("GoBack");
         }
     }
 }

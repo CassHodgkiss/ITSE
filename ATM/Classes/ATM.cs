@@ -37,7 +37,7 @@ namespace ATM
             AccountM account = accounts.SearchByCreditCard(creditCard);
             if (account == null) return;
 
-            InputBox inputBox = new InputBox("Pin", "Input your Pin");
+            InputBox inputBox = new InputBox(LanguageSwitcher.GetString("ATM_PinTitle"), LanguageSwitcher.GetString("ATM_PinPrompt"));
 
             int tries = 0;
 
@@ -58,11 +58,11 @@ namespace ATM
                 }
 
                 tries++;
-                MessageBox.Show("Remaining Tries: " + (3 - tries));
+                MessageBox.Show(LanguageSwitcher.GetString("Misc_RemainingTries") + " " + (3 - tries));
                 inputBox.Input_TB.Clear();
             }
 
-            MessageBox.Show("Pin Failed 3 Times\nSwallowing Card");
+            MessageBox.Show(LanguageSwitcher.GetString("ATM_FailedPin"));
 
             cardReader.SwallowCard();
         }
@@ -72,11 +72,14 @@ namespace ATM
         {
             if(amount == 0)
             {
-                MessageBox.Show("Cannot Deposit £0");
+                MessageBox.Show(LanguageSwitcher.GetString("ATM_DepositZero"));
                 return;
             }
 
-            MessageBox.Show($"Adding £{amount} to your Balance\nNew Balance: £{currentAccount.Balance}");
+            string output = 
+                $"{LanguageSwitcher.GetString("ATM_Deposit_0")} £{amount} " +
+                $"{LanguageSwitcher.GetString("ATM_Deposit_1")} £{currentAccount.Balance}";
+            MessageBox.Show(output);
 
             currentAccount.Balance += amount;
             transactions.CreateWithdrawDeposit(currentAccount, amount, false);
@@ -87,7 +90,7 @@ namespace ATM
         {
             if (currentAccount is LongTermDepositM)
             {
-                MessageBox.Show("Cannot Transfer out of Long Term Deposit Accounts");
+                MessageBox.Show(LanguageSwitcher.GetString("ATM_LTD"));
                 return;
             }
 
@@ -95,23 +98,27 @@ namespace ATM
 
             if (maxWithdraw == 0)
             {
-                MessageBox.Show("Cannot Withdraw as Balance is 0");
+                MessageBox.Show(LanguageSwitcher.GetString("ATM_MaxWithdraw"));
                 return;
             }
 
             if (amount > maxWithdraw)
             {
-                MessageBox.Show($"Amount £{amount} is over your Max Withdraw by £{amount - maxWithdraw}\nTransfering £{maxWithdraw}");
+                string output = 
+                    $"{LanguageSwitcher.GetString("ATM_Withdraw_0")} £{amount} " +
+                    $"{LanguageSwitcher.GetString("ATM_Withdraw_1")} £{amount - maxWithdraw}\n" +
+                    $"{LanguageSwitcher.GetString("ATM_Transfer")} £{maxWithdraw}";
+                MessageBox.Show(output);
                 amount = maxWithdraw;
             }
 
             if (!transactions.HasTransfered(currentAccount))
             {
-                MessageBox.Show($"This is the first Transfer detected on this Account\nSending a code to {currentAccount.Customer.PhoneNumber}");
+                MessageBox.Show($"{LanguageSwitcher.GetString("ATM_Transfer2FA")} {currentAccount.Customer.PhoneNumber}");
 
                 if (!TwoFA.TwoFASim())
                 {
-                    MessageBox.Show("Failed 2FA");
+                    MessageBox.Show(LanguageSwitcher.GetString("ATM_2FAFailed"));
                     return;
                 }
             }
@@ -125,7 +132,10 @@ namespace ATM
             accounts.UpdateAccount(currentAccount);
             accounts.UpdateAccount(transferTo);
 
-            MessageBox.Show($"Transfering £{amount} to Account {transferTo.Id}");
+            string transfer = 
+                $"{LanguageSwitcher.GetString("ATM_Transfer_10")} £{amount} " +
+                $"{LanguageSwitcher.GetString("ATM_Transfer_11")} {transferTo.Id}";
+            MessageBox.Show(transfer);
         }
 
         //Called from UI to withdraw a certain amount
@@ -133,7 +143,7 @@ namespace ATM
         {
             if (currentAccount is LongTermDepositM)
             {
-                MessageBox.Show("Cannot Withdraw from Long Term Deposit Accounts");
+                MessageBox.Show(LanguageSwitcher.GetString("ATM_LTD"));
                 return;
             }
 
@@ -141,23 +151,27 @@ namespace ATM
 
             if(maxWithdraw == 0)
             {
-                MessageBox.Show("Cannot Withdraw as Balance is 0");
+                MessageBox.Show(LanguageSwitcher.GetString("ATM_WithdrawZero"));
                 return;
             }
 
             if (amount > maxWithdraw)
             {
-                MessageBox.Show($"Amount £{amount} is over your Max Withdraw by £{amount - maxWithdraw}\nWithdrawing £{maxWithdraw}");
+                string output =
+                    $"{LanguageSwitcher.GetString("ATM_Withdraw_0")} £{amount} " +
+                    $"{LanguageSwitcher.GetString("ATM_Withdraw_1")} £{amount - maxWithdraw}\n" +
+                    $"{LanguageSwitcher.GetString("ATM_Withdraw")} £{maxWithdraw}";
+                MessageBox.Show(output);
                 amount = maxWithdraw;
             }
 
             if (!transactions.HasWithdrawn(currentAccount))
             {
-                MessageBox.Show($"This is the first Withdraw detected on this Account\nSending a code to {currentAccount.Customer.PhoneNumber}");
+                MessageBox.Show($"{LanguageSwitcher.GetString("ATM_Withdraw2FA")} {currentAccount.Customer.PhoneNumber}");
 
                 if (!TwoFA.TwoFASim())
                 {
-                    MessageBox.Show("Failed 2FA");
+                    MessageBox.Show(LanguageSwitcher.GetString("ATM_2FAFailed"));
                     return;
                 }
             }

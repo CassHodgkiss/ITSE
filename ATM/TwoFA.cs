@@ -17,21 +17,22 @@ namespace ATM
             string code;
             string returnCode;
 
-            InputBox inputBox = new InputBox("2FA Code", "Input Your Code Here:");
+            InputBox inputBox = new InputBox(LanguageSwitcher.GetString("TwoFA_2FA_Title"), 
+                LanguageSwitcher.GetString("TwoFA_2FA_Prompt"));
 
             do
             {
                 code = "";
                 for (int i = 0; i < 6; i++) code += rng.Next(9).ToString();
 
-                MessageBox.Show($"Phone Notification Sim:\nYour code is {code}");
+                MessageBox.Show($"{LanguageSwitcher.GetString("TwoFA_2FA_Phone")} {code}");
                 inputBox.ShowDialog();
                 returnCode = inputBox.Input_TB.Text;
 
                 if (code == returnCode) return true;
 
                 tries++;
-                MessageBox.Show("Remaining Tries: " + (3 - tries));
+                MessageBox.Show(LanguageSwitcher.GetString("Misc_RemainingTries") + " " + (3 - tries));
                 inputBox.Input_TB.Clear();
 
             } while (tries < 3);

@@ -20,10 +20,10 @@ namespace ATM
         {
             List<double> cashOuput = MoneyToCash(amount);
 
-            string output = $"Cash Dispenced £{amount}\n";
+            string output = $"{LanguageSwitcher.GetString("CashIO_Dispensed")} £{amount}\n";
             cashOuput.ForEach(c => output += $"£{c}\n");
 
-            MessageBox.Show(output, "Cash IO");
+            MessageBox.Show(output, LanguageSwitcher.GetString("CashIO_Title"));
         }
 
         public void TakeIn(double amount)

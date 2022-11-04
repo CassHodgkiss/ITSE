@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.ViewAccount_B = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Logout_B = new System.Windows.Forms.Button();
+            this.WithdrawDeposit_B = new System.Windows.Forms.Button();
             this.Transfer_B = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ViewStatement_B = new System.Windows.Forms.Button();
+            this.Prompt_L = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ViewAccount_B
@@ -47,26 +47,26 @@
             this.ViewAccount_B.UseVisualStyleBackColor = true;
             this.ViewAccount_B.Click += new System.EventHandler(this.ViewAccount_Click);
             // 
-            // button5
+            // Logout_B
             // 
-            this.button5.Location = new System.Drawing.Point(264, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Log Out";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Logout_Click);
+            this.Logout_B.Location = new System.Drawing.Point(264, 12);
+            this.Logout_B.Name = "Logout_B";
+            this.Logout_B.Size = new System.Drawing.Size(75, 23);
+            this.Logout_B.TabIndex = 4;
+            this.Logout_B.Text = "Log Out";
+            this.Logout_B.UseVisualStyleBackColor = true;
+            this.Logout_B.Click += new System.EventHandler(this.Logout_Click);
             // 
-            // button2
+            // WithdrawDeposit_B
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(178, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 81);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Withdraw Deposit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.WithdrawDeposit_Click);
+            this.WithdrawDeposit_B.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.WithdrawDeposit_B.Location = new System.Drawing.Point(178, 114);
+            this.WithdrawDeposit_B.Name = "WithdrawDeposit_B";
+            this.WithdrawDeposit_B.Size = new System.Drawing.Size(157, 81);
+            this.WithdrawDeposit_B.TabIndex = 5;
+            this.WithdrawDeposit_B.Text = "Withdraw Deposit";
+            this.WithdrawDeposit_B.UseVisualStyleBackColor = true;
+            this.WithdrawDeposit_B.Click += new System.EventHandler(this.WithdrawDeposit_Click);
             // 
             // Transfer_B
             // 
@@ -79,37 +79,37 @@
             this.Transfer_B.UseVisualStyleBackColor = true;
             this.Transfer_B.Click += new System.EventHandler(this.Transfer_Click);
             // 
-            // button4
+            // ViewStatement_B
             // 
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button4.Location = new System.Drawing.Point(178, 201);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(157, 81);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "View Statement";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.ViewStatement_Click);
+            this.ViewStatement_B.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ViewStatement_B.Location = new System.Drawing.Point(178, 201);
+            this.ViewStatement_B.Name = "ViewStatement_B";
+            this.ViewStatement_B.Size = new System.Drawing.Size(157, 81);
+            this.ViewStatement_B.TabIndex = 7;
+            this.ViewStatement_B.Text = "View Statement";
+            this.ViewStatement_B.UseVisualStyleBackColor = true;
+            this.ViewStatement_B.Click += new System.EventHandler(this.ViewStatement_Click);
             // 
-            // label1
+            // Prompt_L
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 58);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Select an Option";
-            this.label1.VisibleChanged += new System.EventHandler(this.label1_VisibleChanged);
+            this.Prompt_L.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Prompt_L.Location = new System.Drawing.Point(12, 9);
+            this.Prompt_L.Name = "Prompt_L";
+            this.Prompt_L.Size = new System.Drawing.Size(216, 58);
+            this.Prompt_L.TabIndex = 10;
+            this.Prompt_L.Text = "Select an Option";
+            this.Prompt_L.VisibleChanged += new System.EventHandler(this.label1_VisibleChanged);
             // 
             // MainOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 297);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.Prompt_L);
+            this.Controls.Add(this.ViewStatement_B);
             this.Controls.Add(this.Transfer_B);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.WithdrawDeposit_B);
+            this.Controls.Add(this.Logout_B);
             this.Controls.Add(this.ViewAccount_B);
             this.Name = "MainOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -121,10 +121,10 @@
         #endregion
 
         private Button ViewAccount_B;
-        private Button button5;
-        private Button button2;
+        private Button Logout_B;
+        private Button WithdrawDeposit_B;
         private Button Transfer_B;
-        private Button button4;
-        private Label label1;
+        private Button ViewStatement_B;
+        private Label Prompt_L;
     }
 }

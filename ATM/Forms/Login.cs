@@ -19,18 +19,23 @@ namespace ATM
             InitializeComponent();
 
             cardReader = new CardReader();
+            cashIO = new CashIO();
+            atm = new ATM(cardReader, cashIO);
 
+            Setup();
+
+            mainOptions = new MainOptions(this, atm, cashIO);
+        }
+
+        void Setup()
+        {
             //TempCreateData();
             physicalCardList = cardReader.physicalCards.GetPhysicalCards();
             RefreshCardList();
 
-            cashIO = new CashIO();
-
-            atm = new ATM(cardReader, cashIO);
-
-            mainOptions = new MainOptions(this, atm, cashIO);
-
             atm.OnLogin += LoginSignal;
+            LanguageSwitcher.OnLangSwitch += SwitchLanguage;
+            Language_CB.SelectedIndex = 0;
         }
 
         void InsertCreditCard(string cardNumber)
@@ -58,6 +63,21 @@ namespace ATM
 
             InsertCreditCard(cardNumber);
             RefreshCardList();
+        }
+
+        private void Language_CB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (Language_CB.SelectedIndex)
+            {
+                case 0: LanguageSwitcher.SwitchLanguage("en"); break;
+                case 1: LanguageSwitcher.SwitchLanguage("es"); break;
+            }
+        }
+
+        void SwitchLanguage()
+        {
+            Prompt_L.Text = LanguageSwitcher.GetString("Login_Promt");
+            EnterCard_B.Text = LanguageSwitcher.GetString("Login_EnterCard");
         }
 
         Random rng = new Random();

@@ -20,11 +20,13 @@ namespace ATM
 
         public WithdrawDeposit(MainOptions mainOptions, ATM atm, CashIO cashIO)
         {
+            InitializeComponent();
+
             this.mainOptions = mainOptions;
             this.atm = atm;
             this.cashIO = cashIO;
 
-            InitializeComponent();
+            LanguageSwitcher.OnLangSwitch += SwitchLanguage;
         }
 
         void Withdraw(double amount)
@@ -45,7 +47,8 @@ namespace ATM
 
         private void Withdraw_Click(object sender, EventArgs e)
         {
-            InputBox wDBox = new InputBox("Withdraw", "Input Withdraw Amount");
+            InputBox wDBox = new InputBox(LanguageSwitcher.GetString("WithdrawDeposit_Withdraw_Title"), 
+                LanguageSwitcher.GetString("WithdrawDeposit_Withdraw_Prompt"));
 
             while (true)
             {
@@ -60,7 +63,9 @@ namespace ATM
 
         private void Deposit_Click(object sender, EventArgs e)
         {
-            InputBox wDBox = new InputBox("Deposit", "Input Deposit Amount");
+            InputBox wDBox = new InputBox(LanguageSwitcher.GetString("WithdrawDeposit_Deposit_Title"), 
+                LanguageSwitcher.GetString("WithdrawDeposit_Deposit_Prompt"));
+
             while (true)
             {
                 wDBox.ShowDialog();
@@ -77,6 +82,13 @@ namespace ATM
             if (Visible == false) return;
             if (atm.GetAccount() is LongTermDepositM) Withdraw_B.Enabled = false;
             else Withdraw_B.Enabled = true;
+        }
+
+        void SwitchLanguage()
+        {
+            Prompt_L.Text =   LanguageSwitcher.GetString("WithdrawDeposit_Prompt");
+            Withdraw_B.Text = LanguageSwitcher.GetString("WithdrawDeposit_Withdraw");
+            Deposit_B.Text =  LanguageSwitcher.GetString("WithdrawDeposit_Deposit");
         }
     }
 }

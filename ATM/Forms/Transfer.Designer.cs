@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.GoBack_B = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Prompt_L = new System.Windows.Forms.Label();
             this.Select_Account_B = new System.Windows.Forms.Button();
             this.Select_Amount_B = new System.Windows.Forms.Button();
             this.Transfer_B = new System.Windows.Forms.Button();
@@ -46,14 +46,14 @@
             this.GoBack_B.UseVisualStyleBackColor = true;
             this.GoBack_B.Click += new System.EventHandler(this.GoBack_B_Click);
             // 
-            // label1
+            // Prompt_L
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 58);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Transfer Balance to Another Account";
+            this.Prompt_L.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Prompt_L.Location = new System.Drawing.Point(12, 9);
+            this.Prompt_L.Name = "Prompt_L";
+            this.Prompt_L.Size = new System.Drawing.Size(216, 58);
+            this.Prompt_L.TabIndex = 9;
+            this.Prompt_L.Text = "Transfer Balance to Another Account";
             // 
             // Select_Account_B
             // 
@@ -62,7 +62,7 @@
             this.Select_Account_B.Name = "Select_Account_B";
             this.Select_Account_B.Size = new System.Drawing.Size(157, 81);
             this.Select_Account_B.TabIndex = 10;
-            this.Select_Account_B.Text = "Select Account";
+            this.Select_Account_B.Text = "Input Account Id";
             this.Select_Account_B.UseVisualStyleBackColor = true;
             this.Select_Account_B.Click += new System.EventHandler(this.Select_Account_B_Click);
             // 
@@ -73,7 +73,7 @@
             this.Select_Amount_B.Name = "Select_Amount_B";
             this.Select_Amount_B.Size = new System.Drawing.Size(157, 81);
             this.Select_Amount_B.TabIndex = 11;
-            this.Select_Amount_B.Text = "Select Amount";
+            this.Select_Amount_B.Text = "Input Amount";
             this.Select_Amount_B.UseVisualStyleBackColor = true;
             this.Select_Amount_B.Click += new System.EventHandler(this.Select_Amount_B_Click);
             // 
@@ -96,7 +96,7 @@
             this.Transfer_L.Name = "Transfer_L";
             this.Transfer_L.Size = new System.Drawing.Size(320, 34);
             this.Transfer_L.TabIndex = 13;
-            this.Transfer_L.Text = "Transfer £<amount> to <accountid>";
+            this.Transfer_L.Text = "Transfer £<amount> to Account <accountid>";
             this.Transfer_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Transfer
@@ -108,7 +108,7 @@
             this.Controls.Add(this.Transfer_B);
             this.Controls.Add(this.Select_Amount_B);
             this.Controls.Add(this.Select_Account_B);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Prompt_L);
             this.Controls.Add(this.GoBack_B);
             this.Name = "Transfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -120,7 +120,7 @@
         #endregion
 
         private Button GoBack_B;
-        private Label label1;
+        private Label Prompt_L;
         private Button Select_Account_B;
         private Button Select_Amount_B;
         private Button Transfer_B;

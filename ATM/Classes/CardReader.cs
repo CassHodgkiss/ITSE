@@ -33,8 +33,8 @@ namespace ATM
                 CreditCardM swallowedCard = swallowedCards.SearchByCardNumberHash(cardNumber);
 
                 if(swallowedCard != null)
-                    MessageBox.Show("Card with the same Card Number has been Swallowed, Invalid Card");
-                else MessageBox.Show("Credit Card not found");
+                    MessageBox.Show(LanguageSwitcher.GetString("CardReader_WasSwallowed"));
+                else MessageBox.Show(LanguageSwitcher.GetString("CardReader_NotFound"));
 
                 return;
             }
@@ -51,7 +51,7 @@ namespace ATM
         public void EjectCard()
         {
             currentCreditCard = null;
-            MessageBox.Show("Card Ejected", "CardReader");
+            MessageBox.Show(LanguageSwitcher.GetString("CardReader_Eject_Prompt"), LanguageSwitcher.GetString("CardReader_Eject_Title"));
         }
     }
 }

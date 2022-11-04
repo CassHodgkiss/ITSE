@@ -8,8 +8,10 @@
 
         public override string ToString()
         {
-            if(IsRecieved) return $"{DateCreated} : Recieved £{Amount} From {AccountOther.Id}";
-            return $"{DateCreated} : Send £{Amount} To {AccountOther.Id}";
+            if (IsRecieved) return $"{DateCreated} : {LanguageSwitcher.GetString("TransferM_Recieved_0")}  " +
+                                   $"£{Amount} {LanguageSwitcher.GetString("TransferM_Recieved_1")} {AccountOther.Id}";         
+            return $"{DateCreated} : {LanguageSwitcher.GetString("TransferM_Send_0")} £{Amount} " +
+                   $"{LanguageSwitcher.GetString("TransferM_Send_1")} {AccountOther.Id}";
         }
     }
 }

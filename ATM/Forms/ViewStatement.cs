@@ -21,10 +21,12 @@ namespace ATM
 
         public ViewStatement(MainOptions mainOptions, ATM atm)
         {
+            InitializeComponent();
+
             this.mainOptions = mainOptions;
             this.atm = atm;
 
-            InitializeComponent();
+            LanguageSwitcher.OnLangSwitch += SwitchLanguage;
         }
 
         private void GoBack_Click(object sender, EventArgs e)
@@ -44,6 +46,11 @@ namespace ATM
         private void ViewStatement_VisibleChanged(object sender, EventArgs e)
         {
             if(Visible == true) RefreshTransactions();
+        }
+
+        void SwitchLanguage()
+        {
+            Prompt_L.Text = LanguageSwitcher.GetString("Statement_Prompt");
         }
     }
 }

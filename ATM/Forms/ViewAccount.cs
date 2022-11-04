@@ -21,10 +21,10 @@ namespace ATM
 
         public ViewAccount(MainOptions mainOptions, ATM atm)
         {
+            InitializeComponent();
+
             this.mainOptions = mainOptions;
             this.atm = atm;
-
-            InitializeComponent();
         }
 
         private void GoBack_B_Click(object sender, EventArgs e)
@@ -40,20 +40,20 @@ namespace ATM
             account = atm.GetAccount();
             SetAccountTypeLabel();
 
-            AccountId_L.Text = $"Account Id: {account.Id}";
+            AccountId_L.Text = $"{LanguageSwitcher.GetString("ViewAccount_Account")} {account.Id}";
             CustomerDetails_L.Text = account.Customer.FullName;
             CustomerAddress_L.Text = account.Customer.Address;
-            AnnualSalary_L.Text = $"Annual Salary: £{account.Customer.AnnualSalary}";
-            Age_L.Text = $"Age: {account.Customer.Age}";
+            AnnualSalary_L.Text = $"{LanguageSwitcher.GetString("ViewAccount_Salary")} £{account.Customer.AnnualSalary}";
+            Age_L.Text = $"{LanguageSwitcher.GetString("ViewAccount_Age")} {account.Customer.Age}";
 
-            Balance_L.Text = $"Balance: £{account.Balance}";
+            Balance_L.Text = $"{LanguageSwitcher.GetString("ViewAccount_Balance")} £{account.Balance}";
         }
 
         void SetAccountTypeLabel()
         {
-            if      (account is CurrentM) AccountType_L.Text = "Current";
-            else if (account is SimpleDepositM) AccountType_L.Text = "Simple Deposit";
-            else if (account is LongTermDepositM) AccountType_L.Text = "Long Term Deposit";
+            if      (account is CurrentM) AccountType_L.Text = LanguageSwitcher.GetString("ViewAccount_C");
+            else if (account is SimpleDepositM) AccountType_L.Text = LanguageSwitcher.GetString("ViewAccount_SM");
+            else if (account is LongTermDepositM) AccountType_L.Text = LanguageSwitcher.GetString("ViewAccount_LTD");
         }
     }
 }

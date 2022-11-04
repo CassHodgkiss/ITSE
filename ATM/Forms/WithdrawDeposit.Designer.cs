@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.Prompt_L = new System.Windows.Forms.Label();
+            this.GoBack_B = new System.Windows.Forms.Button();
             this.Withdraw_B = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Deposit_B = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // Prompt_L
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(247, 58);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Withdraw and Deposit into your Account";
+            this.Prompt_L.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Prompt_L.Location = new System.Drawing.Point(12, 12);
+            this.Prompt_L.Name = "Prompt_L";
+            this.Prompt_L.Size = new System.Drawing.Size(247, 58);
+            this.Prompt_L.TabIndex = 0;
+            this.Prompt_L.Text = "Withdraw and Deposit into your Account";
             // 
-            // button5
+            // GoBack_B
             // 
-            this.button5.Location = new System.Drawing.Point(264, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Go Back";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.GoBack_Click);
+            this.GoBack_B.Location = new System.Drawing.Point(264, 12);
+            this.GoBack_B.Name = "GoBack_B";
+            this.GoBack_B.Size = new System.Drawing.Size(75, 23);
+            this.GoBack_B.TabIndex = 5;
+            this.GoBack_B.Text = "Go Back";
+            this.GoBack_B.UseVisualStyleBackColor = true;
+            this.GoBack_B.Click += new System.EventHandler(this.GoBack_Click);
             // 
             // Withdraw_B
             // 
@@ -64,26 +64,26 @@
             this.Withdraw_B.UseVisualStyleBackColor = true;
             this.Withdraw_B.Click += new System.EventHandler(this.Withdraw_Click);
             // 
-            // button2
+            // Deposit_B
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(178, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 81);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Deposit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Deposit_Click);
+            this.Deposit_B.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Deposit_B.Location = new System.Drawing.Point(178, 114);
+            this.Deposit_B.Name = "Deposit_B";
+            this.Deposit_B.Size = new System.Drawing.Size(157, 81);
+            this.Deposit_B.TabIndex = 7;
+            this.Deposit_B.Text = "Deposit";
+            this.Deposit_B.UseVisualStyleBackColor = true;
+            this.Deposit_B.Click += new System.EventHandler(this.Deposit_Click);
             // 
             // WithdrawDeposit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 228);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Deposit_B);
             this.Controls.Add(this.Withdraw_B);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.GoBack_B);
+            this.Controls.Add(this.Prompt_L);
             this.Name = "WithdrawDeposit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WithdrawDeposit";
@@ -94,9 +94,9 @@
 
         #endregion
 
-        private Label label1;
-        private Button button5;
+        private Label Prompt_L;
+        private Button GoBack_B;
         private Button Withdraw_B;
-        private Button button2;
+        private Button Deposit_B;
     }
 }

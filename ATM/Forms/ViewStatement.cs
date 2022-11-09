@@ -51,6 +51,7 @@ namespace ATM
         void SwitchLanguage()
         {
             Prompt_L.Text = LanguageSwitcher.GetString("Statement_Prompt");
+            GoBack_B.Text = LanguageSwitcher.GetString("Go_Back");
         }
     }
 }

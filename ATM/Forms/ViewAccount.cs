@@ -25,6 +25,8 @@ namespace ATM
 
             this.mainOptions = mainOptions;
             this.atm = atm;
+
+            LanguageSwitcher.OnLangSwitch += SwitchLangauge;
         }
 
         private void GoBack_B_Click(object sender, EventArgs e)
@@ -54,6 +56,11 @@ namespace ATM
             if      (account is CurrentM) AccountType_L.Text = LanguageSwitcher.GetString("ViewAccount_C");
             else if (account is SimpleDepositM) AccountType_L.Text = LanguageSwitcher.GetString("ViewAccount_SM");
             else if (account is LongTermDepositM) AccountType_L.Text = LanguageSwitcher.GetString("ViewAccount_LTD");
+        }
+
+        void SwitchLangauge()
+        {
+            GoBack_B.Text = LanguageSwitcher.GetString("Go_Back");
         }
     }
 }

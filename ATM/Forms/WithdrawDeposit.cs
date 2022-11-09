@@ -89,6 +89,7 @@ namespace ATM
             Prompt_L.Text =   LanguageSwitcher.GetString("WithdrawDeposit_Prompt");
             Withdraw_B.Text = LanguageSwitcher.GetString("WithdrawDeposit_Withdraw");
             Deposit_B.Text =  LanguageSwitcher.GetString("WithdrawDeposit_Deposit");
+            GoBack_B.Text = LanguageSwitcher.GetString("Go_Back");
         }
     }
 }

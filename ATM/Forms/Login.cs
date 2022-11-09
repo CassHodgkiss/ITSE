@@ -29,7 +29,6 @@ namespace ATM
 
         void Setup()
         {
-            //TempCreateData();
             physicalCardList = cardReader.physicalCards.GetPhysicalCards();
             RefreshCardList();
 
@@ -81,7 +80,7 @@ namespace ATM
         }
 
         Random rng = new Random();
-        private void TempCreateData()
+        void TempCreateData()
         {
             string pins = "";
 
@@ -123,7 +122,7 @@ namespace ATM
                               "values (@FirstName, @LastName, @Address, @AnnualSalary, @Age)";
                 customer.Id = SQLiteAccess.WriteReturnPk(sqlU, customer);
 
-                if(customer is SpecialCustomerM specialCustomer)
+                if (customer is SpecialCustomerM specialCustomer)
                 {
                     string sqlSC = "Insert Into SpecialCustomers (CustomerId, OverdraftPercentage) values (@Id, @OverdraftPercentage)";
                     SQLiteAccess.Write(sqlSC, specialCustomer);
@@ -212,17 +211,17 @@ namespace ATM
                 account.Id = SQLiteAccess.WriteReturnPk(sqlA, accountTemp);
 
 
-                if(account is CurrentM current)
+                if (account is CurrentM current)
                 {
                     string sqlCurrent = "Insert Into Currents (AccountId) values (@Id)";
                     SQLiteAccess.Write(sqlCurrent, current);
                 }
-                else if(account is SimpleDepositM simple)
+                else if (account is SimpleDepositM simple)
                 {
                     string sqlSimple = "Insert Into SimpleDeposits (AccountId) values (@Id)";
                     SQLiteAccess.Write(sqlSimple, simple);
                 }
-                else if(account is LongTermDepositM longTerm)
+                else if (account is LongTermDepositM longTerm)
                 {
                     string sqlLongTerm = "Insert Into LongTermDeposits (AccountId) values (@Id)";
                     SQLiteAccess.Write(sqlLongTerm, longTerm);

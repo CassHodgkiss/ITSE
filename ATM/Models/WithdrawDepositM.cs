@@ -6,8 +6,10 @@
 
         public override string ToString()
         {
-            if (IsWithdrawn) return $"{DateCreated} : Withdrew £{Amount}";
-            return $"{DateCreated} : Deposited £{Amount}";
+            if (IsWithdrawn)
+                return $"{DateCreated} : {LanguageSwitcher.GetString("WithdrawDepositM_Withdrew")} £{Amount}";
+            else
+                return $"{DateCreated} : {LanguageSwitcher.GetString("WithdrawDepositM_Deposited")} £{Amount}";
         }
     }
 }

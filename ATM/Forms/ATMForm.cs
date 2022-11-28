@@ -124,5 +124,10 @@ namespace ATM.Forms
         void BackSpace_Click(object sender, EventArgs e) => currentState.OnBackSpaceClicked();
 
         void Enter_Click(object sender, EventArgs e) => currentState.OnEnterClicked();
+
+        void Audio_CB_CheckedChanged(object sender, EventArgs e)
+        {
+            AudioHandler.ToggleAudio();
+        }
     }
 }

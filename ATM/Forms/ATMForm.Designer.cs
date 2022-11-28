@@ -31,6 +31,11 @@
             this.B1 = new System.Windows.Forms.Button();
             this.B4 = new System.Windows.Forms.Button();
             this.ATMScreen = new System.Windows.Forms.Panel();
+            this.WaitingForCard_P = new System.Windows.Forms.Panel();
+            this.CI_Error_L = new System.Windows.Forms.Label();
+            this.CI_Es_L = new System.Windows.Forms.Label();
+            this.CI_En_L = new System.Windows.Forms.Label();
+            this.CI_Prompt_L = new System.Windows.Forms.Label();
             this.Withdraw_P = new System.Windows.Forms.Panel();
             this.W_20_L = new System.Windows.Forms.Label();
             this.W_10_L = new System.Windows.Forms.Label();
@@ -44,11 +49,6 @@
             this.Withdraw2FAFailed_P = new System.Windows.Forms.Panel();
             this.W2FA_Back_L = new System.Windows.Forms.Label();
             this.W2FA_Prompt_L = new System.Windows.Forms.Label();
-            this.WaitingForCard_P = new System.Windows.Forms.Panel();
-            this.CI_Error_L = new System.Windows.Forms.Label();
-            this.CI_Es_L = new System.Windows.Forms.Label();
-            this.CI_En_L = new System.Windows.Forms.Label();
-            this.CI_Prompt_L = new System.Windows.Forms.Label();
             this.TwoFA_P = new System.Windows.Forms.Panel();
             this.TwoFA_Error_L = new System.Windows.Forms.Label();
             this.TwoFA_Prompt_L = new System.Windows.Forms.Label();
@@ -156,11 +156,12 @@
             this.Enter_B = new System.Windows.Forms.Button();
             this.N0 = new System.Windows.Forms.Button();
             this.KeyPad_P = new System.Windows.Forms.Panel();
+            this.Audio_CB = new System.Windows.Forms.CheckBox();
             this.ATMScreen.SuspendLayout();
+            this.WaitingForCard_P.SuspendLayout();
             this.Withdraw_P.SuspendLayout();
             this.CardSwallowed_P.SuspendLayout();
             this.Withdraw2FAFailed_P.SuspendLayout();
-            this.WaitingForCard_P.SuspendLayout();
             this.TwoFA_P.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TwoP1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TwoP2)).BeginInit();
@@ -242,6 +243,61 @@
             this.ATMScreen.Name = "ATMScreen";
             this.ATMScreen.Size = new System.Drawing.Size(444, 383);
             this.ATMScreen.TabIndex = 0;
+            // 
+            // WaitingForCard_P
+            // 
+            this.WaitingForCard_P.Controls.Add(this.CI_Error_L);
+            this.WaitingForCard_P.Controls.Add(this.CI_Es_L);
+            this.WaitingForCard_P.Controls.Add(this.CI_En_L);
+            this.WaitingForCard_P.Controls.Add(this.CI_Prompt_L);
+            this.WaitingForCard_P.Location = new System.Drawing.Point(3, 57);
+            this.WaitingForCard_P.Name = "WaitingForCard_P";
+            this.WaitingForCard_P.Size = new System.Drawing.Size(436, 320);
+            this.WaitingForCard_P.TabIndex = 3;
+            this.WaitingForCard_P.Visible = false;
+            // 
+            // CI_Error_L
+            // 
+            this.CI_Error_L.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CI_Error_L.Location = new System.Drawing.Point(18, 122);
+            this.CI_Error_L.Name = "CI_Error_L";
+            this.CI_Error_L.Size = new System.Drawing.Size(401, 80);
+            this.CI_Error_L.TabIndex = 4;
+            this.CI_Error_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CI_Es_L
+            // 
+            this.CI_Es_L.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CI_Es_L.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CI_Es_L.Location = new System.Drawing.Point(226, 227);
+            this.CI_Es_L.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.CI_Es_L.Name = "CI_Es_L";
+            this.CI_Es_L.Size = new System.Drawing.Size(200, 80);
+            this.CI_Es_L.TabIndex = 3;
+            this.CI_Es_L.Text = "Español";
+            this.CI_Es_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CI_En_L
+            // 
+            this.CI_En_L.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CI_En_L.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CI_En_L.Location = new System.Drawing.Point(10, 227);
+            this.CI_En_L.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.CI_En_L.Name = "CI_En_L";
+            this.CI_En_L.Size = new System.Drawing.Size(200, 80);
+            this.CI_En_L.TabIndex = 2;
+            this.CI_En_L.Text = "English";
+            this.CI_En_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CI_Prompt_L
+            // 
+            this.CI_Prompt_L.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CI_Prompt_L.Location = new System.Drawing.Point(3, 40);
+            this.CI_Prompt_L.Name = "CI_Prompt_L";
+            this.CI_Prompt_L.Size = new System.Drawing.Size(430, 87);
+            this.CI_Prompt_L.TabIndex = 1;
+            this.CI_Prompt_L.Text = "Please Insert Card into Card Reader";
+            this.CI_Prompt_L.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Withdraw_P
             // 
@@ -392,61 +448,6 @@
             this.W2FA_Prompt_L.TabIndex = 12;
             this.W2FA_Prompt_L.Text = "Withdrawal Failed due to Failure to Complete 2FA";
             this.W2FA_Prompt_L.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // WaitingForCard_P
-            // 
-            this.WaitingForCard_P.Controls.Add(this.CI_Error_L);
-            this.WaitingForCard_P.Controls.Add(this.CI_Es_L);
-            this.WaitingForCard_P.Controls.Add(this.CI_En_L);
-            this.WaitingForCard_P.Controls.Add(this.CI_Prompt_L);
-            this.WaitingForCard_P.Location = new System.Drawing.Point(3, 57);
-            this.WaitingForCard_P.Name = "WaitingForCard_P";
-            this.WaitingForCard_P.Size = new System.Drawing.Size(436, 320);
-            this.WaitingForCard_P.TabIndex = 3;
-            this.WaitingForCard_P.Visible = false;
-            // 
-            // CI_Error_L
-            // 
-            this.CI_Error_L.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CI_Error_L.Location = new System.Drawing.Point(18, 122);
-            this.CI_Error_L.Name = "CI_Error_L";
-            this.CI_Error_L.Size = new System.Drawing.Size(401, 80);
-            this.CI_Error_L.TabIndex = 4;
-            this.CI_Error_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CI_Es_L
-            // 
-            this.CI_Es_L.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CI_Es_L.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CI_Es_L.Location = new System.Drawing.Point(226, 227);
-            this.CI_Es_L.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.CI_Es_L.Name = "CI_Es_L";
-            this.CI_Es_L.Size = new System.Drawing.Size(200, 80);
-            this.CI_Es_L.TabIndex = 3;
-            this.CI_Es_L.Text = "Español";
-            this.CI_Es_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CI_En_L
-            // 
-            this.CI_En_L.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CI_En_L.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CI_En_L.Location = new System.Drawing.Point(10, 227);
-            this.CI_En_L.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.CI_En_L.Name = "CI_En_L";
-            this.CI_En_L.Size = new System.Drawing.Size(200, 80);
-            this.CI_En_L.TabIndex = 2;
-            this.CI_En_L.Text = "English";
-            this.CI_En_L.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CI_Prompt_L
-            // 
-            this.CI_Prompt_L.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CI_Prompt_L.Location = new System.Drawing.Point(3, 40);
-            this.CI_Prompt_L.Name = "CI_Prompt_L";
-            this.CI_Prompt_L.Size = new System.Drawing.Size(430, 87);
-            this.CI_Prompt_L.TabIndex = 1;
-            this.CI_Prompt_L.Text = "Please Insert Card into Card Reader";
-            this.CI_Prompt_L.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // TwoFA_P
             // 
@@ -1652,11 +1653,25 @@
             this.KeyPad_P.Size = new System.Drawing.Size(468, 427);
             this.KeyPad_P.TabIndex = 22;
             // 
+            // Audio_CB
+            // 
+            this.Audio_CB.AutoSize = true;
+            this.Audio_CB.Checked = true;
+            this.Audio_CB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Audio_CB.Location = new System.Drawing.Point(613, 844);
+            this.Audio_CB.Name = "Audio_CB";
+            this.Audio_CB.Size = new System.Drawing.Size(58, 19);
+            this.Audio_CB.TabIndex = 33;
+            this.Audio_CB.Text = "Audio";
+            this.Audio_CB.UseVisualStyleBackColor = true;
+            this.Audio_CB.CheckedChanged += new System.EventHandler(this.Audio_CB_CheckedChanged);
+            // 
             // ATMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 875);
+            this.Controls.Add(this.Audio_CB);
             this.Controls.Add(this.KeyPad_P);
             this.Controls.Add(this.ATMScreen);
             this.Controls.Add(this.B1);
@@ -1671,10 +1686,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ATMForm";
             this.ATMScreen.ResumeLayout(false);
+            this.WaitingForCard_P.ResumeLayout(false);
             this.Withdraw_P.ResumeLayout(false);
             this.CardSwallowed_P.ResumeLayout(false);
             this.Withdraw2FAFailed_P.ResumeLayout(false);
-            this.WaitingForCard_P.ResumeLayout(false);
             this.TwoFA_P.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TwoP1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TwoP2)).EndInit();
@@ -1703,6 +1718,7 @@
             this.Title_P.ResumeLayout(false);
             this.KeyPad_P.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1836,5 +1852,6 @@
         public Label ViewAccount_L;
         public Label WFP_Prompt_L;
         public Label CardS_Prompt_L;
+        private CheckBox Audio_CB;
     }
 }

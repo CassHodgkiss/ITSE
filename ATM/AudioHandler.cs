@@ -9,6 +9,8 @@ namespace ATM
 {
     public static class AudioHandler
     {
+        static bool muted = false;
+
         static Dictionary<string, SoundPlayer> Audio = new Dictionary<string, SoundPlayer>()
         {
             { "insert_pin",       new SoundPlayer("Audio/audio_2.wav")  },
@@ -35,7 +37,13 @@ namespace ATM
 
         public static void PlayAudio(string key)
         {
-            Audio[key].Play();
+            if(!muted)
+                Audio[key].Play();
+        }
+
+        public static void ToggleAudio()
+        {
+            muted = !muted;
         }
     }
 }

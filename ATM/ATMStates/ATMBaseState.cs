@@ -9,13 +9,18 @@ namespace ATM.ATMStates
 {
     public abstract class ATMBaseState
     {
-        public abstract void OnEnterState(ATMForm atmForm);
-        public abstract void OnExitState(ATMForm atmForm);
-        public abstract void OnB1Clicked(ATMForm atmForm);
-        public abstract void OnB2Clicked(ATMForm atmForm);
-        public abstract void OnB3Clicked(ATMForm atmForm);
-        public abstract void OnB4Clicked(ATMForm atmForm);
-        public abstract void OnB5Clicked(ATMForm atmForm);
-        public abstract void OnB6Clicked(ATMForm atmForm);
+        protected ATMForm atmForm;
+
+        public ATMBaseState(ATMForm atmForm)
+        {
+            this.atmForm = atmForm;
+        }
+
+        public virtual void OnEnterState() { }
+        public virtual void OnExitState() { }
+        public virtual void OnBClicked(int b) { }
+        public virtual void OnNClicked(int n) { }
+        public virtual void OnBackSpaceClicked() { }
+        public virtual void OnEnterClicked() { }
     }
 }

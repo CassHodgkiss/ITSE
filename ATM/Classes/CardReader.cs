@@ -10,14 +10,24 @@ namespace ATM
 {
     public class CardReader
     {
+        public event Action OnCardWasSwallowed;
+        public event Action OnCardNotFound;
+        public event Action OnCardFound;
+
+        public CreditCards CreditCards { get; }
+        public SwallowedCards SwallowedCards { get; }
+        public PhysicalCards PhysicalCards { get; }
+
         ATM atm;
-        CreditCards creditCards = new CreditCards();
-        SwallowedCards swallowedCards = new SwallowedCards();
 
-        public PhysicalCards physicalCards = new PhysicalCards();
+        public CreditCardM CurrentCreditCard { get; private set; }
 
-        CreditCardM currentCreditCard;
-
+        public CardReader()
+        {
+            CreditCards = new CreditCards();
+            SwallowedCards = new SwallowedCards();
+            PhysicalCards = new PhysicalCards();
+        }
 
         public void LinkATM(ATM atm)
         {
@@ -26,32 +36,26 @@ namespace ATM
 
         public void CreditCardDetected(string cardNumber)
         {
-            currentCreditCard = creditCards.SearchByCardNumberHash(cardNumber);
+            CurrentCreditCard = CreditCards.SearchByCardNumberHash(cardNumber);
 
-            if (currentCreditCard == null)
-            {
-                CreditCardM swallowedCard = swallowedCards.SearchByCardNumberHash(cardNumber);
+            if (CurrentCreditCard != null) { OnCardFound?.Invoke(); return; }
+            
+            CreditCardM swallowedCard = SwallowedCards.SearchByCardNumberHash(cardNumber);
 
-                if(swallowedCard != null)
-                    MessageBox.Show(LanguageSwitcher.GetString("CardReader_WasSwallowed"));
-                else MessageBox.Show(LanguageSwitcher.GetString("CardReader_NotFound"));
-
-                return;
-            }
-
-            atm.CreditCardScanned(currentCreditCard);
+            if (swallowedCard != null)
+                OnCardWasSwallowed?.Invoke();
+            else OnCardNotFound?.Invoke();
         }
 
         public void SwallowCard()
         {
-            creditCards.RemoveCard(currentCreditCard);
-            swallowedCards.AddCard(currentCreditCard);
+            CreditCards.RemoveCard(CurrentCreditCard);
+            SwallowedCards.AddCard(CurrentCreditCard);
         }
 
         public void EjectCard()
         {
-            currentCreditCard = null;
-            MessageBox.Show(LanguageSwitcher.GetString("CardReader_Eject_Prompt"), LanguageSwitcher.GetString("CardReader_Eject_Title"));
+            CurrentCreditCard = null;
         }
     }
 }

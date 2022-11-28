@@ -16,5 +16,18 @@ namespace ATM.Models
 
         public CreditCardM CreditCard { get; set; }
         public CustomerM Customer { get; set; }
+
+        public string Id_String
+        {
+            get
+            {
+                string id_string = Id.ToString();
+                int leadZeros = 6 - id_string.Length;
+
+                string leadZeros_string = new string('0', leadZeros);
+
+                return leadZeros_string + id_string;
+            }
+        }
     }
 }

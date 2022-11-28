@@ -9,44 +9,78 @@ namespace ATM.ATMStates
 {
     public class ATMWaitingForCardState : ATMBaseState
     {
-        public override void OnEnterState(ATMForm atmForm)
+        public ATMWaitingForPinState ATMWaitingForPinState { get; }
+
+        public ATMWaitingForCardState(ATMForm atmForm) : base(atmForm)
         {
-            atmForm.WaitingForCard_P.Show();
+            atmForm.CardReader.OnCardWasSwallowed += CardWasSwallowed;
+            atmForm.CardReader.OnCardNotFound += CardNotFound;
+            atmForm.CardReader.OnCardFound += CardFound;
+            atmForm.ATM.OnAccountFrozen += AccountFrozen;
+            atmForm.ATM.OnAccountFound += AccountFound;
+
+            ATMWaitingForPinState = new ATMWaitingForPinState(atmForm);
+
+            LangSwitch.OnLangSwitch += () =>
+            {
+                atmForm.CI_Prompt_L.Text = LangSwitch.GetString("WFC_P");
+            };
         }
 
-        public override void OnExitState(ATMForm atmForm)
+        public override void OnEnterState()
+        {
+            atmForm.CI_Error_L.Text = "";
+            atmForm.WaitingForCard_P.Show();
+
+            AudioHandler.PlayAudio("card");
+        }
+
+        public override void OnExitState()
         {
             atmForm.WaitingForCard_P.Hide();
         }
 
-        public override void OnB1Clicked(ATMForm atmForm)
+        public override void OnBClicked(int b)
         {
-            throw new NotImplementedException();
+            switch (b)
+            {
+                case 3: LangSwitch.SwitchLanguage("en"); return;
+                case 6: LangSwitch.SwitchLanguage("es"); return;
+            }
         }
 
-        public override void OnB2Clicked(ATMForm atmForm)
+        public override void OnEnterClicked()
         {
-            throw new NotImplementedException();
+            var form = new InsertCardSim(atmForm.CardReader);
+            form.ShowDialog();
+            string cardNumber = form.GetCardNumber();
+
+            atmForm.CardReader.CreditCardDetected(cardNumber);
         }
 
-        public override void OnB3Clicked(ATMForm atmForm)
+        void CardFound()
         {
-            throw new NotImplementedException();
+            atmForm.ATM.CreditCardScanned();
         }
 
-        public override void OnB4Clicked(ATMForm atmForm)
+        void CardNotFound()
         {
-            throw new NotImplementedException();
+            atmForm.CI_Error_L.Text = LangSwitch.GetString("WFC_NF");
+        }                                                  
+
+        void CardWasSwallowed()
+        {
+            atmForm.CI_Error_L.Text = LangSwitch.GetString("WFC_CS");
         }
 
-        public override void OnB5Clicked(ATMForm atmForm)
+        void AccountFrozen()
         {
-            throw new NotImplementedException();
+            atmForm.CI_Error_L.Text = LangSwitch.GetString("WFC_AF");
         }
 
-        public override void OnB6Clicked(ATMForm atmForm)
+        void AccountFound()
         {
-            throw new NotImplementedException();
+            atmForm.SwitchState(ATMWaitingForPinState);
         }
     }
 }

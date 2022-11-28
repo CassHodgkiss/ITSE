@@ -1,4 +1,5 @@
 ﻿using ATM.Forms;
+using ATM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,44 +10,88 @@ namespace ATM.ATMStates
 {
     public class ATMMainOptionsState : ATMBaseState
     {
-        public override void OnEnterState(ATMForm atmForm)
+        bool IsLTD = false;
+
+        public ATMMainOptionsState(ATMForm atmForm) : base(atmForm)
         {
+            LangSwitch.OnLangSwitch += () =>
+            {
+                atmForm.ViewAccount_L.Text =   LangSwitch.GetString("MO_VA");
+                atmForm.Withdraw_L.Text =      LangSwitch.GetString("MO_W");
+                atmForm.Transfer_L.Text =      LangSwitch.GetString("T");
+                atmForm.ViewStatement_L.Text = LangSwitch.GetString("MO_VS");
+                atmForm.Deposit_L.Text =       LangSwitch.GetString("D");
+                atmForm.EjectCard_L.Text =     LangSwitch.GetString("MO_EC");
+            };
+        }
+
+        public override void OnEnterState()
+        {
+            IsLTD = atmForm.ATM.GetAccount() is LongTermDepositM;
+
+            if (IsLTD)
+            {
+                atmForm.Withdraw_L.BackColor = Color.Gray;
+                atmForm.Transfer_L.BackColor = Color.Gray;
+            }
+            else
+            {
+                atmForm.Withdraw_L.BackColor = Color.FromArgb(255, 227, 227, 227);
+                atmForm.Transfer_L.BackColor = Color.FromArgb(255, 227, 227, 227);
+            }
+
             atmForm.MainOptions_P.Show();
         }
 
-        public override void OnExitState(ATMForm atmForm)
+        public override void OnExitState()
         {
             atmForm.MainOptions_P.Hide();
         }
 
-        public override void OnB1Clicked(ATMForm atmForm)
+        public override void OnBClicked(int b)
         {
-            throw new NotImplementedException();
+            switch (b)
+            {
+                case 1: ViewAccount();   break;
+                case 2: Withdraw();      break;
+                case 3: Transfer();      break;
+                case 4: ViewStatement(); break;
+                case 5: Deposit();       break;
+                case 6: EjectCard();     break;
+            }
         }
 
-        public override void OnB2Clicked(ATMForm atmForm)
+        void ViewAccount()
         {
-            throw new NotImplementedException();
+            atmForm.SwitchState(atmForm.ATMViewAccountState);
         }
 
-        public override void OnB3Clicked(ATMForm atmForm)
+        void Withdraw()
         {
-            throw new NotImplementedException();
+            if(!IsLTD)
+                atmForm.SwitchState(atmForm.ATMWithdrawState);
         }
 
-        public override void OnB4Clicked(ATMForm atmForm)
+        void Deposit()
         {
-            throw new NotImplementedException();
+            atmForm.SwitchState(atmForm.ATMDepositState);
         }
 
-        public override void OnB5Clicked(ATMForm atmForm)
+        void Transfer()
         {
-            throw new NotImplementedException();
+            if (!IsLTD)
+                atmForm.SwitchState(atmForm.ATMTransferState);
         }
 
-        public override void OnB6Clicked(ATMForm atmForm)
+        void ViewStatement()
         {
-            throw new NotImplementedException();
+            atmForm.SwitchState(atmForm.ATMViewStatementState);
+        }
+
+        void EjectCard()
+        {
+            atmForm.ATM.Logout();
+            atmForm.SwitchState(atmForm.ATMWaitingForCardState);
         }
     }
 }

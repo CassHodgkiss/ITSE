@@ -1,13 +1,13 @@
 ﻿using SQLiteDataAccess;
 using ATM.Models;
 
-namespace ATM
+namespace ATM.Classes
 {
     public class Accounts // Collection
     {
         List<AccountM> accounts = new List<AccountM>();
 
-        public Accounts()
+        public Accounts(Customers customers)
         {
             //Current Accounts
             string sqlc = 
@@ -38,6 +38,9 @@ namespace ATM
             accounts.AddRange(SQLiteAccess.Read<LongTermDepositM, CreditCardM, CustomerM>(sqlltd,
                 (ltdeposit, card, customer) => { ltdeposit.CreditCard = card; ltdeposit.Customer = customer; return ltdeposit; },
                 new { }));
+
+            //Not the best way but replaces the customers in case of special customer
+            accounts.ForEach(a => a.Customer = customers.customers[a.Customer.Id]);
         }
 
         public void UpdateAccount(AccountM account)

@@ -28,6 +28,8 @@ namespace ATM.ATMStates
             atmForm.Deposit_P.Show();
             atmForm.Deposit_Amount_L.Text = "£0";
             atmForm.Deposit_Error.Text = "";
+
+            AudioHandler.PlayAudio("deposit");
         }
 
         public override void OnExitState()

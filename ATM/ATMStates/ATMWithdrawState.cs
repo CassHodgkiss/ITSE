@@ -23,6 +23,8 @@ namespace ATM.ATMStates
         public override void OnEnterState()
         {
             atmForm.Withdraw_P.Show();
+
+            AudioHandler.PlayAudio("withdraw");
         }
 
         public override void OnExitState()

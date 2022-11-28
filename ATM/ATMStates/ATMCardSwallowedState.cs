@@ -21,6 +21,8 @@ namespace ATM.ATMStates
         public override void OnEnterState()
         {
             atmForm.CardSwallowed_P.Show();
+
+            AudioHandler.PlayAudio("pin_failed");
         }
 
         public override void OnExitState()

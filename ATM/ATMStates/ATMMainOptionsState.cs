@@ -41,6 +41,8 @@ namespace ATM.ATMStates
             }
 
             atmForm.MainOptions_P.Show();
+
+            AudioHandler.PlayAudio("main_options");
         }
 
         public override void OnExitState()
@@ -90,6 +92,7 @@ namespace ATM.ATMStates
 
         void EjectCard()
         {
+            AudioHandler.PlayAudio("ejecting_card");
             atmForm.ATM.Logout();
             atmForm.SwitchState(atmForm.ATMWaitingForCardState);
         }

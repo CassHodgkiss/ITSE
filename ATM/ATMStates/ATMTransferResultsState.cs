@@ -37,6 +37,7 @@ namespace ATM.ATMStates
                     atmForm.TR_T_L.Text = "";
                     atmForm.TR_NewBal_L.Text = "";
                     atmForm.TR_Error_L.Text = LangSwitch.GetString("TR_ALR");
+                    AudioHandler.PlayAudio("transfer_failed");
                     return;
                 }
 
@@ -52,6 +53,7 @@ namespace ATM.ATMStates
             }
 
             atmForm.TR_Prompt_L.Text = LangSwitch.GetString("TR_S");
+            AudioHandler.PlayAudio("transfer_success");
         }
 
         public override void OnBClicked(int b)

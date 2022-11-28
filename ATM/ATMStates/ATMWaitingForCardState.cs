@@ -31,8 +31,6 @@ namespace ATM.ATMStates
         {
             atmForm.CI_Error_L.Text = "";
             atmForm.WaitingForCard_P.Show();
-
-            AudioHandler.PlayAudio("card");
         }
 
         public override void OnExitState()

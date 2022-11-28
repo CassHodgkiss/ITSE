@@ -45,6 +45,8 @@ namespace ATM.ATMStates
             else if (account is LongTermDepositM) atmForm.AccountType_L.Text = LangSwitch.GetString("VA_LTD");
 
             atmForm.ViewAccount_P.Show();
+
+            AudioHandler.PlayAudio("account");
         }
 
         public override void OnExitState()

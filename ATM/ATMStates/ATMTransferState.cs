@@ -71,6 +71,8 @@ namespace ATM.ATMStates
             atmForm.T_Id_L.Text = "xxxxxx";
             atmForm.T_M_L.Text = "£0";
             atmForm.Transfer_AccountId_P.Show();
+
+            AudioHandler.PlayAudio("transfer_id");
         }
 
         public override void OnExitState()
@@ -136,6 +138,7 @@ namespace ATM.ATMStates
                 if (transferTo.Id == atmForm.ATM.GetAccount().Id)
                 {
                     atmForm.T_Error_Id_L.Text = LangSwitch.GetString("T_SA");
+                    AudioHandler.PlayAudio("transfer_same");
                     return;
                 }
 
@@ -144,6 +147,7 @@ namespace ATM.ATMStates
                 atmForm.Transfer_Money_P.Show();
                 index = 0;
                 state = TransferState.Money;
+                AudioHandler.PlayAudio("transfer_amount");
             }
             else
                 Transfer();
@@ -156,6 +160,7 @@ namespace ATM.ATMStates
             if (amount == 0)
             {
                 atmForm.T_Error_M_L.Text = LangSwitch.GetString("V_0");
+                AudioHandler.PlayAudio("transfer_0");
                 return;
             }
 

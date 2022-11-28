@@ -45,6 +45,8 @@ namespace ATM.ATMStates
             amount = new int[3];
             DisplayAmount();
             atmForm.InputWithdrawAmount_P.Show();
+
+            AudioHandler.PlayAudio("withdraw_amount");
         }
 
         public override void OnExitState()
@@ -73,6 +75,7 @@ namespace ATM.ATMStates
             if (value == 0)
             {
                 atmForm.WI_Error_L.Text = LangSwitch.GetString("V_0");
+                AudioHandler.PlayAudio("withdraw_0");
                 return;
             }
 

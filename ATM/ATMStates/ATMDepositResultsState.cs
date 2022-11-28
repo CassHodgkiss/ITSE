@@ -20,6 +20,8 @@ namespace ATM.ATMStates
         public override void OnEnterState()
         {
             atmForm.DepositResults_P.Show();
+
+            AudioHandler.PlayAudio("deposit_success");
         }
 
         public override void OnExitState()
@@ -31,6 +33,8 @@ namespace ATM.ATMStates
         {
             atmForm.DR_Amount_L.Text = LangSwitch.GetString("D_D") + amount;
             atmForm.DR_NewBal_L.Text = LangSwitch.GetString("R_NB") + newBal;
+
+            AudioHandler.PlayAudio("deposit_success");
         }
 
         public override void OnBClicked(int b)

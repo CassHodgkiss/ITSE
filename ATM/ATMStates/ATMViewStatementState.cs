@@ -25,6 +25,8 @@ namespace ATM.ATMStates
         {
             RefreshTransactions();
             atmForm.ViewStatment_P.Show();
+
+            AudioHandler.PlayAudio("statement");
         }
 
         public override void OnExitState()

@@ -38,6 +38,7 @@ namespace ATM.ATMStates
                     atmForm.WR_NewBal_L.Text = "";
                     atmForm.WR_Error_L.Text = LangSwitch.GetString("WR_ALR");
                     atmForm.WR_Collect_L.Text = "";
+                    AudioHandler.PlayAudio("withdraw_failed");
                     return;
                 }
 
@@ -54,6 +55,8 @@ namespace ATM.ATMStates
 
             atmForm.WR_Prompt_L.Text = LangSwitch.GetString("WR_S");
             atmForm.WR_Collect_L.Text = LangSwitch.GetString("WR_P");
+
+            AudioHandler.PlayAudio("withdraw_success");
         }
 
         public override void OnBClicked(int b)

@@ -21,6 +21,8 @@ namespace ATM.ATMStates
         public override void OnEnterState()
         {
             atmForm.Transfer2FAFailed_P.Show();
+
+            AudioHandler.PlayAudio("transfer_failed");
         }
 
         public override void OnExitState()

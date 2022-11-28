@@ -40,6 +40,8 @@ namespace ATM.ATMStates
             ResetPins();
             atmForm.WFP_Error_L.Text = "";
             atmForm.WaitingForPin_P.Show();
+
+            AudioHandler.PlayAudio("insert_pin");
         }
 
         public override void OnExitState()
@@ -97,6 +99,7 @@ namespace ATM.ATMStates
             else
             {
                 atmForm.WFP_Error_L.Text = LangSwitch.GetString("P_PI") + " " + (3 - tries);
+                AudioHandler.PlayAudio("pin_incorrect");
             }
         }
 

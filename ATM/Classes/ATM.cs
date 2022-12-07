@@ -12,6 +12,7 @@ namespace ATM
     {
         public event Action OnAccountFrozen;
         public event Action OnAccountFound;
+        public event Action OnAccountNotFound;
 
         CardReader cardReader;
         CashIO cashIO;
@@ -39,7 +40,12 @@ namespace ATM
         {
             CreditCardM creditCard = cardReader.CurrentCreditCard;
             currentAccount = accounts.SearchByCreditCard(creditCard);
-            if (currentAccount.IsFrozen == true)
+            if(currentAccount == null)
+            {
+                cardReader.EjectCard();
+                OnAccountNotFound?.Invoke();
+            }
+            else if (currentAccount.IsFrozen == true)
             {
                 currentAccount = null;
                 cardReader.EjectCard();
@@ -109,8 +115,6 @@ namespace ATM
             cardReader.EjectCard();
         }
 
-        public Transactions GetTransactions() { return transactions; }
-
         public List<TransactionM> GetLastTransactions()
         {
             return transactions.GetLastTransactions(currentAccount);
@@ -141,6 +145,9 @@ namespace ATM
             {
                 maxWithdraw = simpleDeposit.Balance;
             }
+
+            //Just in case of Floating Point errors
+            if (maxWithdraw <= 0.001f) maxWithdraw = 0;
 
             return maxWithdraw;
         }

@@ -24,16 +24,6 @@ namespace ATM
             return creditCard;
         }
 
-        public void AddCard(CreditCardM creditCard)
-        {
-            creditCard.IsSwallowed = false;
-            cards.Add(creditCard);
-
-            string sql = "Insert Into CreditCards (CardNumberHash, CreationDate, ExpireDate, CVV, IsSwallowed) " +
-                "values (@CardNumberHash, @CreationDate, @ExpireDate, @CVV, @IsSwallowed)";
-            SQLiteAccess.Write(sql, creditCard);
-        }
-
         public void RemoveCard(CreditCardM creditCard)
         {
             cards.Remove(creditCard);

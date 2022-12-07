@@ -7,9 +7,9 @@
         public override string ToString()
         {
             if (IsWithdrawn)
-                return $"{DateCreated} : {LangSwitch.GetString("VS_W")} £{Amount}";
+                return $"{DateCreated} : {LangSwitch.GetString("VS_W")} £{Amount:0.##}";
             else
-                return $"{DateCreated} : {LangSwitch.GetString("VS_D")} £{Amount}";
+                return $"{DateCreated} : {LangSwitch.GetString("VS_D")} £{Amount:0.##}";
         }
     }
 }

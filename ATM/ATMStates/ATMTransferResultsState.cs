@@ -41,14 +41,14 @@ namespace ATM.ATMStates
                     return;
                 }
 
-                atmForm.TR_T_L.Text = $"{LangSwitch.GetString("TR_T1")}{max} {LangSwitch.GetString("TR_T2")} {accountId}";
-                atmForm.TR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance}";
-                atmForm.TR_Error_L.Text = $"{LangSwitch.GetString("TR_OT1")}{max} {LangSwitch.GetString("TR_OT2")}{withdrew} {LangSwitch.GetString("R_ALR")}";
+                atmForm.TR_T_L.Text = $"{LangSwitch.GetString("TR_T1")}{max:0.##} {LangSwitch.GetString("TR_T2")} {accountId}";
+                atmForm.TR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance:0.##}";
+                atmForm.TR_Error_L.Text = $"{LangSwitch.GetString("TR_OT1")}{max:0.##} {LangSwitch.GetString("TR_OT2")}{withdrew:0.##} {LangSwitch.GetString("TR_ALR")}";
             }
             else
             {
-                atmForm.TR_T_L.Text = $"{LangSwitch.GetString("TR_T1")}{withdrew} {LangSwitch.GetString("TR_T2")} {accountId}";
-                atmForm.TR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance}";
+                atmForm.TR_T_L.Text = $"{LangSwitch.GetString("TR_T1")}{withdrew:0.##} {LangSwitch.GetString("TR_T2")} {accountId}";
+                atmForm.TR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance:0.##}";
                 atmForm.TR_Error_L.Text = "";
             }
 

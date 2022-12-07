@@ -13,6 +13,7 @@ namespace ATM
         public event Action OnCardWasSwallowed;
         public event Action OnCardNotFound;
         public event Action OnCardFound;
+        public event Action OnCardExpired;
 
         public CreditCards CreditCards { get; }
         public SwallowedCards SwallowedCards { get; }
@@ -38,7 +39,13 @@ namespace ATM
         {
             CurrentCreditCard = CreditCards.SearchByCardNumberHash(cardNumber);
 
-            if (CurrentCreditCard != null) { OnCardFound?.Invoke(); return; }
+            if (CurrentCreditCard != null)
+            {
+                int timeDifference = DateTime.Compare(DateTime.Parse(CurrentCreditCard.ExpireDate), DateTime.Now);
+                if(timeDifference <= 0) OnCardExpired?.Invoke();
+                else OnCardFound?.Invoke();
+                return;
+            }
             
             CreditCardM swallowedCard = SwallowedCards.SearchByCardNumberHash(cardNumber);
 

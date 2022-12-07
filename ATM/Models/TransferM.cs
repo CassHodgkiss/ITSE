@@ -11,10 +11,10 @@
             if (IsRecieved) 
                 return 
                     $"{DateCreated} : {LangSwitch.GetString("VS_R1")}  " +
-                    $"£{Amount} {LangSwitch.GetString("VS_R2")} {AccountOther.Id}";         
+                    $"£{Amount:0.##} {LangSwitch.GetString("VS_R2")} {AccountOther.Id}";         
             else
                 return 
-                    $"{DateCreated} : {LangSwitch.GetString("VS_T1")} £{Amount} " +
+                    $"{DateCreated} : {LangSwitch.GetString("VS_T1")} £{Amount:0.##} " +
                     $"{LangSwitch.GetString("VS_T2")} {AccountOther.Id}";
         }
     }

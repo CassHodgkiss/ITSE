@@ -41,7 +41,7 @@ namespace ATM
                 { "WR_S",    "Your Withdrawal was Successful" },
                 { "WR_NS",   "Your Withdrawal wasn't Successful" },
                 { "WR_W1",   "Withdrew: £" },
-                { "WR_OW1",  "Only Withdrew £ " },
+                { "WR_OW1",  "Only Withdrew £" },
                 { "WR_OW2",  "of £" },
                 { "WR_ALR",  "Due to Exceding Account Limit" },
                 { "R_NB",    "New Account Balance: £" },
@@ -74,7 +74,8 @@ namespace ATM
                 { "WFC_NF",  "Credit Card not found" },
                 { "W_IWA",   "Input Withdraw Amount" },
                 { "T_IA",    "Input Amount" },
-                { "WFC_AF",  "Your Account is Frozen" }
+                { "WFC_AF",  "Your Account is Frozen" },
+                { "WFC_CE",  "Your Card has Expired" }
             } },
 
             { "es", new Dictionary<string, string>()
@@ -138,7 +139,8 @@ namespace ATM
                 { "WFC_NF",  "Tarjeta no encontrada" },
                 { "W_IWA",   "Entrada Cantidad de Retiro" },
                 { "T_IA",    "Entrada Cantidad" },
-                { "WFC_AF",  "Your Account is Frozen" }
+                { "WFC_AF",  "Tu cuenta se ha congelado" },
+                { "WFC_CE",  "Su tarjeta ha caducado" }
             } },
         };
 

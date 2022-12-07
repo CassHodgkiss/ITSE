@@ -14,10 +14,8 @@ namespace ATM.Forms
         public CardReader CardReader { get; }
         public CashIO CashIO { get; }
 
-        public CreditCards CreditCards { get; }
-        public SwallowedCards SwallowedCards { get; }
-        public Transactions Transactions { get; }
         public Accounts Accounts { get; }
+
 
         ATMBaseState currentState;
 
@@ -62,10 +60,6 @@ namespace ATM.Forms
             CashIO = new CashIO();
             ATM = new ATM(CardReader, CashIO);
             Accounts = ATM.accounts;
-
-            CreditCards = new CreditCards();
-            SwallowedCards = new SwallowedCards();
-            Transactions = new Transactions();
 
             ATMWaitingForCardState = new ATMWaitingForCardState(this);
             ATMMainOptionsState = new ATMMainOptionsState(this);

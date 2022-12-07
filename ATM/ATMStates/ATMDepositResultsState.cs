@@ -31,8 +31,8 @@ namespace ATM.ATMStates
 
         public void SetResults(double amount, double newBal)
         {
-            atmForm.DR_Amount_L.Text = LangSwitch.GetString("D_D") + amount;
-            atmForm.DR_NewBal_L.Text = LangSwitch.GetString("R_NB") + newBal;
+            atmForm.DR_Amount_L.Text = LangSwitch.GetString("D_D") + amount.ToString("0.##");
+            atmForm.DR_NewBal_L.Text = LangSwitch.GetString("R_NB") + newBal.ToString("0.##");
 
             AudioHandler.PlayAudio("deposit_success");
         }

@@ -27,13 +27,15 @@ namespace ATM.ATMStates
             atmForm.CustomerAddress_L.Text = account.Customer.Address;
             atmForm.AnnualSalary_L.Text =    $"{LangSwitch.GetString("VA_S")} £{account.Customer.AnnualSalary}";
             atmForm.Age_L.Text =             $"{LangSwitch.GetString("VA_A")} {account.Customer.Age}";
-            atmForm.Balance_L.Text =         $"{LangSwitch.GetString("VA_B")} £{account.Balance}";
+            atmForm.Balance_L.Text =         $"{LangSwitch.GetString("VA_B")} £{account.Balance:0.##}";
 
-            if(account.Customer is SpecialCustomerM specialCustomer)
+            if(account is CurrentM)
             {
                 atmForm.SpecialCustomer_SP.Show();
                 atmForm.Overdraft_Prompt_L.Text = LangSwitch.GetString("VA_O");
-                atmForm.Overdraft_L.Text = (specialCustomer.OverdraftPercentage * 100) + "%";
+
+                if (account.Customer is SpecialCustomerM specialCustomer) atmForm.Overdraft_L.Text = (specialCustomer.OverdraftPercentage * 100) + "%";
+                else atmForm.Overdraft_L.Text = "0%";
             }
             else
             {

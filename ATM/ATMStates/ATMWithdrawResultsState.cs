@@ -42,14 +42,14 @@ namespace ATM.ATMStates
                     return;
                 }
 
-                atmForm.WR_Withdrew_L.Text = $"{LangSwitch.GetString("WR_W1")}{max}";
-                atmForm.WR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance}";
-                atmForm.WR_Error_L.Text = $"{LangSwitch.GetString("WR_OW1")}{max} {LangSwitch.GetString("WR_OW2")}{withdrew} {LangSwitch.GetString("WR_ALR")}";
+                atmForm.WR_Withdrew_L.Text = $"{LangSwitch.GetString("WR_W1")}{max.ToString("0.##")}";
+                atmForm.WR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance.ToString("0.##")}";
+                atmForm.WR_Error_L.Text = $"{LangSwitch.GetString("WR_OW1")}{max.ToString("0.##")} {LangSwitch.GetString("WR_OW2")}{withdrew.ToString("0.##")} {LangSwitch.GetString("WR_ALR")}";
             }
             else
             {
-                atmForm.WR_Withdrew_L.Text = $"{LangSwitch.GetString("WR_W1")}{withdrew}";
-                atmForm.WR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance}";
+                atmForm.WR_Withdrew_L.Text = $"{LangSwitch.GetString("WR_W1")}{withdrew.ToString("0.##")}";
+                atmForm.WR_NewBal_L.Text = $"{LangSwitch.GetString("R_NB")}{balance.ToString("0.##")}";
                 atmForm.WR_Error_L.Text = "";
             }
 

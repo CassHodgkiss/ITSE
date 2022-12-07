@@ -56,7 +56,7 @@ namespace SQLiteDataAccess
         }
 
         //Loads the Filepath to the SQL Database from the App.config file
-        static string LoadConfigString(string id = "Default")
+        public static string LoadConfigString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }

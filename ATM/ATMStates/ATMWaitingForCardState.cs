@@ -16,8 +16,10 @@ namespace ATM.ATMStates
             atmForm.CardReader.OnCardWasSwallowed += CardWasSwallowed;
             atmForm.CardReader.OnCardNotFound += CardNotFound;
             atmForm.CardReader.OnCardFound += CardFound;
+            atmForm.CardReader.OnCardExpired += CardExpired;
             atmForm.ATM.OnAccountFrozen += AccountFrozen;
             atmForm.ATM.OnAccountFound += AccountFound;
+            atmForm.ATM.OnAccountNotFound += AccountNotFound;
 
             ATMWaitingForPinState = new ATMWaitingForPinState(atmForm);
 
@@ -79,6 +81,16 @@ namespace ATM.ATMStates
         void AccountFound()
         {
             atmForm.SwitchState(ATMWaitingForPinState);
+        }
+
+        void AccountNotFound()
+        {
+            atmForm.CI_Error_L.Text = LangSwitch.GetString("T_NF");
+        }
+
+        void CardExpired()
+        {
+            atmForm.CI_Error_L.Text = LangSwitch.GetString("WFC_CE");
         }
     }
 }
